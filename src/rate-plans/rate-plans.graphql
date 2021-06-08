@@ -1,0 +1,50 @@
+type Query {
+  ratePlans: [RatePlan]
+  activeRatePlansForDev(developer_id: String): [RatePlan]
+  developers: [Developer]
+}
+
+# type Mutation {
+
+# }
+
+type RatePlan {
+  contractDuration: Int
+  advance: Boolean
+  contractDurationType: String
+  currency: Currency
+  customPaymentTerm: Boolean
+  description: String
+  displayName: String
+  earlyTerminationFee: Int
+  frequencyDuration: Int
+  frequencyDurationType: String
+  id: String
+  isPrivate: Boolean
+  keepOriginalStartDate: Boolean
+  monetizationPackage: MonetizationPackage
+  name: String
+  paymentDueDays: String
+  prorate: String
+  published: Boolean
+  recurringFee: Int
+  recurringStartUnit: Int
+  recurringType: String
+  setUpFee: Int
+  startDate: String
+  type: String
+}
+
+type Currency {
+  id: String
+  description: String
+  displayName: String
+  name: String
+}
+
+type MonetizationPackage {
+  description: String
+  displayName: String
+  id: String
+  name: String
+}

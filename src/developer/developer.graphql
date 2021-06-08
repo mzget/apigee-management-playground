@@ -1,0 +1,29 @@
+type Developer {
+  apps: [String]
+  companies: [Company]
+  email: String
+  developerId: String
+  firstName: String
+  lastName: String
+  userName: String
+  organizationName: String
+  status: String
+  attributes: [Attribute]
+  createdAt: Int
+  createdBy: String
+  lastModifiedAt: String
+  lastModifiedBy: String
+  id: String
+}
+
+type Company {
+  id: String
+  description: String
+  displayName: String
+  name: String
+}
+
+type Attribute {
+  name: String
+  value: String
+}
