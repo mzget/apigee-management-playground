@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ConfigModule } from '@nestjs/config';
+import { BigIntResolver } from 'graphql-scalars';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -16,6 +17,7 @@ import { DeveloperModule } from './developer/developer.module';
       debug: true,
       playground: true,
       typePaths: ['./**/*.graphql'],
+      resolvers: { BigInt: BigIntResolver },
     }),
   ],
   controllers: [AppController],

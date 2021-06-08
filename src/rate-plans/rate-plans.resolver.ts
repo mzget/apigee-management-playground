@@ -14,7 +14,18 @@ export class RatePlansResolver {
 
   @Query()
   async activeRatePlansForDev(@Args('developer_id') developer_id: string) {
-    return this.ratePlansService.findActiveRatePlansForDev(developer_id);
+    const items = await this.ratePlansService.findActiveRatePlansForDev(
+      developer_id,
+    );
+    return items.ratePlan;
+  }
+
+  @Query()
+  async developerAcceptedRatePlans(@Args('developer_id') developer_id: string) {
+    const items = await this.ratePlansService.developerAcceptedRatePlans(
+      developer_id,
+    );
+    return items.ratePlan;
   }
 
   //   @ResolveField()

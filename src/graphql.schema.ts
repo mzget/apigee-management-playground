@@ -7,9 +7,6 @@
 
 /* tslint:disable */
 /* eslint-disable */
-
-import _BigNumber from 'bignumber.js'
-
 export class Developer {
     apps?: string[];
     companies?: Company[];
@@ -21,7 +18,7 @@ export class Developer {
     organizationName?: string;
     status?: string;
     attributes?: Attribute[];
-    createdAt?: number;
+    createdAt?: BigInt;
     createdBy?: string;
     lastModifiedAt?: string;
     lastModifiedBy?: string;
@@ -44,6 +41,8 @@ export abstract class IQuery {
     abstract ratePlans(): RatePlan[] | Promise<RatePlan[]>;
 
     abstract activeRatePlansForDev(developer_id?: string): RatePlan[] | Promise<RatePlan[]>;
+
+    abstract developerAcceptedRatePlans(developer_id?: string): RatePlan[] | Promise<RatePlan[]>;
 
     abstract developers(): Developer[] | Promise<Developer[]>;
 }
@@ -88,3 +87,5 @@ export class MonetizationPackage {
     id?: string;
     name?: string;
 }
+
+export type BigInt = unknown;

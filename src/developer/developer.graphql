@@ -1,3 +1,5 @@
+scalar BigInt
+
 type Developer {
   apps: [String]
   companies: [Company]
@@ -9,7 +11,7 @@ type Developer {
   organizationName: String
   status: String
   attributes: [Attribute]
-  createdAt: Int
+  createdAt: BigInt
   createdBy: String
   lastModifiedAt: String
   lastModifiedBy: String

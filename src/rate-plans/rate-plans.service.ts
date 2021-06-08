@@ -24,4 +24,10 @@ export class RatePlansService implements BaseService<RatePlan> {
       path: `/mint/organizations/{org_name}/developers/${developer_id}/developer-rateplans?all=true`,
     });
   }
+
+  async developerAcceptedRatePlans(developer_id: string) {
+    return await this.httpClient.get<{ ratePlan: RatePlan[] }>({
+      path: `/mint/organizations/{org_name}/developers/${developer_id}/developer-accepted-rateplans?all=true`,
+    });
+  }
 }

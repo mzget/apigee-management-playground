@@ -8,9 +8,9 @@ definitionsFactory.generate({
   outputAs: 'class',
   watch: false,
   defaultScalarType: 'unknown',
-  customScalarTypeMapping: {
-    DateTime: 'Date',
-    BigNumber: '_BigNumber',
-  },
-  additionalHeader: "import _BigNumber from 'bignumber.js'",
+  // customScalarTypeMapping: {
+  //   DateTime: 'Date',
+  //   BigNumber: '_BigNumber',
+  // },
+  // additionalHeader: "import _BigNumber from 'bignumber.js'",
 });

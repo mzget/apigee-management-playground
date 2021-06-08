@@ -1,6 +1,8 @@
 type Query {
   ratePlans: [RatePlan]
   activeRatePlansForDev(developer_id: String): [RatePlan]
+  developerAcceptedRatePlans(developer_id: String): [RatePlan]
+
   developers: [Developer]
 }
 
