@@ -8,6 +8,7 @@ export class ApiPackagesService implements BaseService<HttpClient> {
   constructor(public httpClient: HttpClient) {
     this.httpClient = new HttpClient();
   }
+  findOne: (params: any) => any;
 
   create(item: APIPackage) {
     return [];

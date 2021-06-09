@@ -1,5 +1,7 @@
 import fetch from 'node-fetch';
 
+type Options = { path: string; data?: any };
+
 export class HttpClient {
   host: string;
   orgName: string;
@@ -13,18 +15,40 @@ export class HttpClient {
     ).toString('base64');
   }
 
-  async get<T>({ path }: { path: string }): Promise<T> {
+  async get<T>({ path }: Options): Promise<T> {
     try {
       const url = `${this.host}${path.replace('{org_name}', this.orgName)}`;
       const response = await fetch(url, {
         headers: {
           Authorization: `Basic ${this.credentials}`,
+          'Content-Type': 'application/json',
         },
       });
       if (response.ok) {
         return response.json();
       } else {
-        throw new Error(response.statusText);
+        return await response.json();
+      }
+    } catch (ex) {
+      console.log('Error', ex.message);
+    }
+  }
+
+  async post<T>({ path, data }: Options): Promise<T> {
+    try {
+      const url = `${this.host}${path.replace('{org_name}', this.orgName)}`;
+      const response = await fetch(url, {
+        headers: {
+          Authorization: `Basic ${this.credentials}`,
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        return response.json();
+      } else {
+        return await response.json();
       }
     } catch (ex) {
       console.log('Error', ex.message);

@@ -8,6 +8,7 @@ export class RatePlansService implements BaseService<RatePlan> {
   constructor(public httpClient: HttpClient) {
     this.httpClient = new HttpClient();
   }
+  findOne: () => any;
 
   create(item: RatePlan) {
     return [];

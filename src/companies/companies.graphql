@@ -1,0 +1,13 @@
+type Company {
+  apps: [String]
+  description: String
+  displayName: String
+  name: String
+  organization: String
+  status: String
+  attributes: [Attribute]
+  createdAt: BigInt
+  createdBy: String
+  lastModifiedAt: BigInt
+  lastModifiedBy: String
+}

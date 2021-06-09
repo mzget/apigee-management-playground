@@ -1,13 +1,14 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ConfigModule } from '@nestjs/config';
-import { BigIntResolver } from 'graphql-scalars';
+import { BigIntResolver, JSONResolver } from 'graphql-scalars';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RatePlansModule } from './rate-plans/rate-plans.module';
 import { DeveloperModule } from './developer/developer.module';
 import { ApiPackagesModule } from './api-packages/api-packages.module';
+import { CompaniesModule } from './companies/companies.module';
 
 @Module({
   imports: [
@@ -15,11 +16,12 @@ import { ApiPackagesModule } from './api-packages/api-packages.module';
     RatePlansModule,
     DeveloperModule,
     ApiPackagesModule,
+    CompaniesModule,
     GraphQLModule.forRoot({
       debug: true,
       playground: true,
       typePaths: ['./**/*.graphql'],
-      resolvers: { BigInt: BigIntResolver },
+      resolvers: { BigInt: BigIntResolver, JSON: JSONResolver },
     }),
   ],
   controllers: [AppController],

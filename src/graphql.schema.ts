@@ -52,6 +52,20 @@ export class Product {
     transactionSuccessCriteria?: string;
 }
 
+export class Company {
+    apps?: string[];
+    description?: string;
+    displayName?: string;
+    name?: string;
+    organization?: string;
+    status?: string;
+    attributes?: Attribute[];
+    createdAt?: BigInt;
+    createdBy?: string;
+    lastModifiedAt?: BigInt;
+    lastModifiedBy?: string;
+}
+
 export class Developer {
     apps?: string[];
     companies?: Company[];
@@ -70,28 +84,9 @@ export class Developer {
     id?: string;
 }
 
-export class Company {
-    id?: string;
-    description?: string;
-    displayName?: string;
-    name?: string;
-}
-
 export class Attribute {
     name?: string;
     value?: string;
-}
-
-export abstract class IQuery {
-    abstract ratePlans(): RatePlan[] | Promise<RatePlan[]>;
-
-    abstract activeRatePlansForDev(developer_id?: string): RatePlan[] | Promise<RatePlan[]>;
-
-    abstract developerAcceptedRatePlans(developer_id?: string): RatePlan[] | Promise<RatePlan[]>;
-
-    abstract developers(): Developer[] | Promise<Developer[]>;
-
-    abstract apiPackages(): APIPackage[] | Promise<APIPackage[]>;
 }
 
 export class RatePlan {
@@ -135,4 +130,25 @@ export class MonetizationPackage {
     name?: string;
 }
 
+export abstract class IQuery {
+    abstract ratePlans(): RatePlan[] | Promise<RatePlan[]>;
+
+    abstract activeRatePlansForDev(developer_id?: string): RatePlan[] | Promise<RatePlan[]>;
+
+    abstract developerAcceptedRatePlans(developer_id?: string): RatePlan[] | Promise<RatePlan[]>;
+
+    abstract companies(): Company[] | Promise<Company[]>;
+
+    abstract company(company_name?: string): Company | Promise<Company>;
+
+    abstract developers(): Developer[] | Promise<Developer[]>;
+
+    abstract apiPackages(): APIPackage[] | Promise<APIPackage[]>;
+}
+
+export abstract class IMutation {
+    abstract purchaseRatePlan(developer_or_company_id?: string, rate_plan_id?: string, start_date?: string): JSON | Promise<JSON>;
+}
+
 export type BigInt = unknown;
+export type JSON = unknown;

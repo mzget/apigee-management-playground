@@ -1,0 +1,21 @@
+scalar BigInt
+scalar JSON
+
+type Query {
+  ratePlans: [RatePlan]
+  activeRatePlansForDev(developer_id: String): [RatePlan]
+  developerAcceptedRatePlans(developer_id: String): [RatePlan]
+
+  companies: [Company]
+  company(company_name: String): Company
+  developers: [Developer]
+  apiPackages: [APIPackage]
+}
+
+type Mutation {
+  purchaseRatePlan(
+    developer_or_company_id: String
+    rate_plan_id: String
+    start_date: String
+  ): JSON
+}
