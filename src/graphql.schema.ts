@@ -7,6 +7,51 @@
 
 /* tslint:disable */
 /* eslint-disable */
+export class APIPackage {
+    description?: string;
+    displayName?: string;
+    id?: string;
+    name?: string;
+    status?: string;
+    organization?: Organization;
+    product?: Product[];
+}
+
+export class Organization {
+    address?: string[];
+    approveTrusted?: boolean;
+    approveUntrusted?: boolean;
+    billingCycle?: string;
+    country?: string;
+    currency?: string;
+    description?: string;
+    hasBillingAdjustment?: boolean;
+    hasBroker?: boolean;
+    hasSelfBilling?: boolean;
+    hasSeparateInvoiceForProduct?: boolean;
+    id?: string;
+    issueNettingStmt?: boolean;
+    name?: string;
+    nettingStmtPerCurrency?: boolean;
+    selfBillingAsExchOrg?: boolean;
+    selfBillingForAllDev?: boolean;
+    separateInvoiceForFees?: boolean;
+    status?: string;
+    supportedBillingType?: string;
+    taxEngineExternalId?: string;
+    taxModel?: string;
+    timezone?: string;
+}
+
+export class Product {
+    displayName?: string;
+    id?: string;
+    name?: string;
+    organization?: Organization;
+    status?: string;
+    transactionSuccessCriteria?: string;
+}
+
 export class Developer {
     apps?: string[];
     companies?: Company[];
@@ -45,6 +90,8 @@ export abstract class IQuery {
     abstract developerAcceptedRatePlans(developer_id?: string): RatePlan[] | Promise<RatePlan[]>;
 
     abstract developers(): Developer[] | Promise<Developer[]>;
+
+    abstract apiPackages(): APIPackage[] | Promise<APIPackage[]>;
 }
 
 export class RatePlan {

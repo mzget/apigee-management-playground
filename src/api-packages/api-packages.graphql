@@ -1,0 +1,44 @@
+type APIPackage {
+  description: String
+  displayName: String
+  id: String
+  name: String
+  status: String
+  organization: Organization
+  product: [Product]
+}
+
+type Organization {
+  address: [String]
+  approveTrusted: Boolean
+  approveUntrusted: Boolean
+  billingCycle: String
+  country: String
+  currency: String
+  description: String
+  hasBillingAdjustment: Boolean
+  hasBroker: Boolean
+  hasSelfBilling: Boolean
+  hasSeparateInvoiceForProduct: Boolean
+  id: String
+  issueNettingStmt: Boolean
+  name: String
+  nettingStmtPerCurrency: Boolean
+  selfBillingAsExchOrg: Boolean
+  selfBillingForAllDev: Boolean
+  separateInvoiceForFees: Boolean
+  status: String
+  supportedBillingType: String
+  taxEngineExternalId: String
+  taxModel: String
+  timezone: String
+}
+
+type Product {
+  displayName: String
+  id: String
+  name: String
+  organization: Organization
+  status: String
+  transactionSuccessCriteria: String
+}

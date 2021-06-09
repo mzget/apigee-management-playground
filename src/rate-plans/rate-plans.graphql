@@ -4,6 +4,7 @@ type Query {
   developerAcceptedRatePlans(developer_id: String): [RatePlan]
 
   developers: [Developer]
+  apiPackages: [APIPackage]
 }
 
 # type Mutation {
