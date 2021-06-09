@@ -19,4 +19,17 @@ export class ApiPackagesService implements BaseService<HttpClient> {
       path: '/mint/organizations/{org_name}/monetization-packages',
     });
   }
+
+  addProductToPackage({ package_id, product_id }) {
+    return this.httpClient.post<APIPackage>({
+      path: `/mint/organizations/{org_name}/monetization-packages/${package_id}/products/${product_id}`,
+      data: {},
+    });
+  }
+
+  deleteProductFormPackage({ package_id, product_id }) {
+    return this.httpClient.delete<APIPackage>({
+      path: `/mint/organizations/{org_name}/monetization-packages/${package_id}/products/${product_id}`,
+    });
+  }
 }

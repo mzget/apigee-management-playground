@@ -17,6 +17,7 @@ export class RatePlansResolver {
     const items = await this.ratePlansService.findActiveRatePlansForDev(
       developer_id,
     );
+    console.log('activeRatePlansForDev', items);
     return items.ratePlan;
   }
 

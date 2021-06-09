@@ -1,6 +1,6 @@
 type RatePlan {
-  contractDuration: Int
   advance: Boolean
+  contractDuration: Int
   contractDurationType: String
   currency: Currency
   customPaymentTerm: Boolean
@@ -12,11 +12,13 @@ type RatePlan {
   id: String
   isPrivate: Boolean
   keepOriginalStartDate: Boolean
-  monetizationPackage: MonetizationPackage
+  monetizationPackage: APIPackage
   name: String
+  organization: Organization
   paymentDueDays: String
   prorate: String
   published: Boolean
+  ratePlanDetails: [RatePlanDetail]
   recurringFee: Int
   recurringStartUnit: Int
   recurringType: String
@@ -25,16 +27,41 @@ type RatePlan {
   type: String
 }
 
+type RatePlanDetail {
+  aggregateFreemiumCounters: Boolean
+  aggregateStandardCounters: Boolean
+  aggregateTransactions: Boolean
+  currency: Currency
+  customPaymentTerm: Boolean
+  duration: Int
+  durationType: String
+  freemiumDuration: Int
+  freemiumDurationType: String
+  freemiumUnit: Int
+  id: String
+  meteringType: String
+  organization: Organization
+  paymentDueDays: String
+  ratePlanRates: [RatePlanRates]
+  ratingParameter: String
+  revenueType: String
+  type: String
+}
+
+type RatePlanRates {
+  endUnit: Int
+  id: String
+  rate: Float
+  startUnit: Int
+  type: String
+}
+
 type Currency {
   id: String
   description: String
   displayName: String
   name: String
-}
-
-type MonetizationPackage {
-  description: String
-  displayName: String
-  id: String
-  name: String
+  organization: Organization
+  status: String
+  virtualCurrency: Boolean
 }

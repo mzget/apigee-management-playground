@@ -1,6 +1,7 @@
+import { json } from 'express';
 import fetch from 'node-fetch';
 
-type Options = { path: string; data?: any };
+type Options = { path: string; data?: any; method?: string };
 
 export class HttpClient {
   host: string;
@@ -15,43 +16,40 @@ export class HttpClient {
     ).toString('base64');
   }
 
-  async get<T>({ path }: Options): Promise<T> {
+  private async request(opts: Options) {
+    const { path, data, method = 'GET' } = opts;
     try {
       const url = `${this.host}${path.replace('{org_name}', this.orgName)}`;
-      const response = await fetch(url, {
+      const config = {
         headers: {
           Authorization: `Basic ${this.credentials}`,
           'Content-Type': 'application/json',
         },
-      });
-      if (response.ok) {
-        return response.json();
-      } else {
+        method,
+      };
+      if (data) {
+        config['body'] = data ? JSON.stringify(data) : undefined;
+      }
+      const response = await fetch(url, config);
+      try {
         return await response.json();
+      } catch {
+        throw new Error(response.statusText);
       }
     } catch (ex) {
-      console.log('Error', ex.message);
+      return ex.message;
     }
   }
 
+  async get<T>({ path }: Options): Promise<T> {
+    return this.request({ path });
+  }
+
   async post<T>({ path, data }: Options): Promise<T> {
-    try {
-      const url = `${this.host}${path.replace('{org_name}', this.orgName)}`;
-      const response = await fetch(url, {
-        headers: {
-          Authorization: `Basic ${this.credentials}`,
-          'Content-Type': 'application/json',
-        },
-        method: 'POST',
-        body: JSON.stringify(data),
-      });
-      if (response.ok) {
-        return response.json();
-      } else {
-        return await response.json();
-      }
-    } catch (ex) {
-      console.log('Error', ex.message);
-    }
+    return this.request({ path, data, method: 'POST' });
+  }
+
+  async delete<T>({ path, data }: Options): Promise<T> {
+    return this.request({ path, data, method: 'DELETE' });
   }
 }

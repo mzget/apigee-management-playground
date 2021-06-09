@@ -4,7 +4,7 @@ scalar JSON
 type Query {
   ratePlans: [RatePlan]
   activeRatePlansForDev(developer_id: String): [RatePlan]
-  developerAcceptedRatePlans(developer_id: String): [RatePlan]
+  developerAcceptedRatePlans(developer_id: String): JSON
 
   companies: [Company]
   company(company_name: String): Company
@@ -18,4 +18,6 @@ type Mutation {
     rate_plan_id: String
     start_date: String
   ): JSON
+  addProductToPackage(package_id: String, product_id: String): JSON
+  deleteProductFormPackage(package_id: String, product_id: String): JSON
 }

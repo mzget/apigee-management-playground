@@ -90,8 +90,8 @@ export class Attribute {
 }
 
 export class RatePlan {
-    contractDuration?: number;
     advance?: boolean;
+    contractDuration?: number;
     contractDurationType?: string;
     currency?: Currency;
     customPaymentTerm?: boolean;
@@ -103,11 +103,13 @@ export class RatePlan {
     id?: string;
     isPrivate?: boolean;
     keepOriginalStartDate?: boolean;
-    monetizationPackage?: MonetizationPackage;
+    monetizationPackage?: APIPackage;
     name?: string;
+    organization?: Organization;
     paymentDueDays?: string;
     prorate?: string;
     published?: boolean;
+    ratePlanDetails?: RatePlanDetail[];
     recurringFee?: number;
     recurringStartUnit?: number;
     recurringType?: string;
@@ -116,18 +118,43 @@ export class RatePlan {
     type?: string;
 }
 
+export class RatePlanDetail {
+    aggregateFreemiumCounters?: boolean;
+    aggregateStandardCounters?: boolean;
+    aggregateTransactions?: boolean;
+    currency?: Currency;
+    customPaymentTerm?: boolean;
+    duration?: number;
+    durationType?: string;
+    freemiumDuration?: number;
+    freemiumDurationType?: string;
+    freemiumUnit?: number;
+    id?: string;
+    meteringType?: string;
+    organization?: Organization;
+    paymentDueDays?: string;
+    ratePlanRates?: RatePlanRates[];
+    ratingParameter?: string;
+    revenueType?: string;
+    type?: string;
+}
+
+export class RatePlanRates {
+    endUnit?: number;
+    id?: string;
+    rate?: number;
+    startUnit?: number;
+    type?: string;
+}
+
 export class Currency {
     id?: string;
     description?: string;
     displayName?: string;
     name?: string;
-}
-
-export class MonetizationPackage {
-    description?: string;
-    displayName?: string;
-    id?: string;
-    name?: string;
+    organization?: Organization;
+    status?: string;
+    virtualCurrency?: boolean;
 }
 
 export abstract class IQuery {
@@ -135,7 +162,7 @@ export abstract class IQuery {
 
     abstract activeRatePlansForDev(developer_id?: string): RatePlan[] | Promise<RatePlan[]>;
 
-    abstract developerAcceptedRatePlans(developer_id?: string): RatePlan[] | Promise<RatePlan[]>;
+    abstract developerAcceptedRatePlans(developer_id?: string): JSON | Promise<JSON>;
 
     abstract companies(): Company[] | Promise<Company[]>;
 
@@ -148,6 +175,10 @@ export abstract class IQuery {
 
 export abstract class IMutation {
     abstract purchaseRatePlan(developer_or_company_id?: string, rate_plan_id?: string, start_date?: string): JSON | Promise<JSON>;
+
+    abstract addProductToPackage(package_id?: string, product_id?: string): JSON | Promise<JSON>;
+
+    abstract deleteProductFormPackage(package_id?: string, product_id?: string): JSON | Promise<JSON>;
 }
 
 export type BigInt = unknown;
