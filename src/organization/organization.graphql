@@ -1,5 +1,5 @@
 type Organization {
-  address: [String]
+  address: [Address]
   approveTrusted: Boolean
   approveUntrusted: Boolean
   billingCycle: String
@@ -19,7 +19,20 @@ type Organization {
   separateInvoiceForFees: Boolean
   status: String
   supportedBillingType: String
+  regNo: String
   taxEngineExternalId: String
   taxModel: String
+  taxRegNo: String
   timezone: String
+}
+
+type Address {
+  address1: String
+  address2: String
+  city: String
+  country: String
+  id: String
+  isPrimary: Boolean
+  state: String
+  zip: String
 }

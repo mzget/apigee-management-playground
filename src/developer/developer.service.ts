@@ -14,7 +14,7 @@ export class DeveloperService implements BaseService<HttpClient> {
   }
   async findAll() {
     return await this.httpClient.get<{ developer: Developer[] }>({
-      path: '/organizations/{org_name}/developers?expand=true&startKey=nattapon.rat@kbtg.tech',
+      path: '/organizations/{org_name}/developers?expand=true',
     });
   }
 

@@ -64,7 +64,7 @@ export class Attribute {
 }
 
 export class Organization {
-    address?: string[];
+    address?: Address[];
     approveTrusted?: boolean;
     approveUntrusted?: boolean;
     billingCycle?: string;
@@ -84,9 +84,22 @@ export class Organization {
     separateInvoiceForFees?: boolean;
     status?: string;
     supportedBillingType?: string;
+    regNo?: string;
     taxEngineExternalId?: string;
     taxModel?: string;
+    taxRegNo?: string;
     timezone?: string;
+}
+
+export class Address {
+    address1?: string;
+    address2?: string;
+    city?: string;
+    country?: string;
+    id?: string;
+    isPrimary?: boolean;
+    state?: string;
+    zip?: string;
 }
 
 export class RatePlan {

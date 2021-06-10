@@ -49,6 +49,10 @@ export class HttpClient {
     return this.request({ path, data, method: 'POST' });
   }
 
+  async put<T>({ path, data }: Options): Promise<T> {
+    return this.request({ path, data, method: 'PUT' });
+  }
+
   async delete<T>({ path, data }: Options): Promise<T> {
     return this.request({ path, data, method: 'DELETE' });
   }
