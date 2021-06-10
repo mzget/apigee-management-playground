@@ -9,6 +9,7 @@ import { RatePlansModule } from './rate-plans/rate-plans.module';
 import { DeveloperModule } from './developer/developer.module';
 import { ApiPackagesModule } from './api-packages/api-packages.module';
 import { CompaniesModule } from './companies/companies.module';
+import { OrganizationModule } from './organization/organization.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { CompaniesModule } from './companies/companies.module';
     DeveloperModule,
     ApiPackagesModule,
     CompaniesModule,
+    OrganizationModule,
     GraphQLModule.forRoot({
       debug: true,
       playground: true,

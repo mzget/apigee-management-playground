@@ -5,7 +5,7 @@ type Query {
   ratePlans: [RatePlan]
   activeRatePlansForDev(developer_id: String): [RatePlan]
   developerAcceptedRatePlans(developer_id: String): JSON
-
+  organization: Organization
   companies: [Company]
   company(company_name: String): Company
   developers: [Developer]

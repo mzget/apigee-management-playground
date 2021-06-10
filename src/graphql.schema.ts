@@ -17,32 +17,6 @@ export class APIPackage {
     product?: Product[];
 }
 
-export class Organization {
-    address?: string[];
-    approveTrusted?: boolean;
-    approveUntrusted?: boolean;
-    billingCycle?: string;
-    country?: string;
-    currency?: string;
-    description?: string;
-    hasBillingAdjustment?: boolean;
-    hasBroker?: boolean;
-    hasSelfBilling?: boolean;
-    hasSeparateInvoiceForProduct?: boolean;
-    id?: string;
-    issueNettingStmt?: boolean;
-    name?: string;
-    nettingStmtPerCurrency?: boolean;
-    selfBillingAsExchOrg?: boolean;
-    selfBillingForAllDev?: boolean;
-    separateInvoiceForFees?: boolean;
-    status?: string;
-    supportedBillingType?: string;
-    taxEngineExternalId?: string;
-    taxModel?: string;
-    timezone?: string;
-}
-
 export class Product {
     displayName?: string;
     id?: string;
@@ -87,6 +61,32 @@ export class Developer {
 export class Attribute {
     name?: string;
     value?: string;
+}
+
+export class Organization {
+    address?: string[];
+    approveTrusted?: boolean;
+    approveUntrusted?: boolean;
+    billingCycle?: string;
+    country?: string;
+    currency?: string;
+    description?: string;
+    hasBillingAdjustment?: boolean;
+    hasBroker?: boolean;
+    hasSelfBilling?: boolean;
+    hasSeparateInvoiceForProduct?: boolean;
+    id?: string;
+    issueNettingStmt?: boolean;
+    name?: string;
+    nettingStmtPerCurrency?: boolean;
+    selfBillingAsExchOrg?: boolean;
+    selfBillingForAllDev?: boolean;
+    separateInvoiceForFees?: boolean;
+    status?: string;
+    supportedBillingType?: string;
+    taxEngineExternalId?: string;
+    taxModel?: string;
+    timezone?: string;
 }
 
 export class RatePlan {
@@ -163,6 +163,8 @@ export abstract class IQuery {
     abstract activeRatePlansForDev(developer_id?: string): RatePlan[] | Promise<RatePlan[]>;
 
     abstract developerAcceptedRatePlans(developer_id?: string): JSON | Promise<JSON>;
+
+    abstract organization(): Organization | Promise<Organization>;
 
     abstract companies(): Company[] | Promise<Company[]>;
 
