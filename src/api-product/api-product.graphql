@@ -1,0 +1,8 @@
+type Product {
+  displayName: String
+  id: String
+  name: String
+  organization: Organization
+  status: String
+  transactionSuccessCriteria: String
+}

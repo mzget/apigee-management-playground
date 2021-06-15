@@ -6,4 +6,5 @@ export default interface IBaseService<T> {
   create: (T) => any;
   findAll: () => any;
   findOne: (params: any) => any;
+  deleteOne: (T) => any;
 }

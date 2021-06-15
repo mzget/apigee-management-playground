@@ -8,6 +8,7 @@ export class DeveloperService implements BaseService<HttpClient> {
   constructor(public httpClient: HttpClient) {
     this.httpClient = new HttpClient();
   }
+  deleteOne: (T: any) => any;
   findOne: (params: any) => any;
   create(item: Developer) {
     return [];

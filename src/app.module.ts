@@ -10,6 +10,7 @@ import { DeveloperModule } from './developer/developer.module';
 import { ApiPackagesModule } from './api-packages/api-packages.module';
 import { CompaniesModule } from './companies/companies.module';
 import { OrganizationModule } from './organization/organization.module';
+import { ApiProductModule } from './api-product/api-product.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { OrganizationModule } from './organization/organization.module';
     ApiPackagesModule,
     CompaniesModule,
     OrganizationModule,
+    ApiProductModule,
     GraphQLModule.forRoot({
       debug: true,
       playground: true,

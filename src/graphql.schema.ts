@@ -7,6 +7,18 @@
 
 /* tslint:disable */
 /* eslint-disable */
+export class APIPackageInput {
+    description: string;
+    displayName: string;
+    name: string;
+    product?: ProductInput[];
+    status: string;
+}
+
+export class ProductInput {
+    id: number;
+}
+
 export class APIPackage {
     description?: string;
     displayName?: string;
@@ -183,9 +195,13 @@ export abstract class IQuery {
 
     abstract company(company_name?: string): Company | Promise<Company>;
 
+    abstract companyAcceptedPackage(company_id?: string, current?: boolean): APIPackage[] | Promise<APIPackage[]>;
+
     abstract developers(): Developer[] | Promise<Developer[]>;
 
     abstract apiPackages(): APIPackage[] | Promise<APIPackage[]>;
+
+    abstract apiPackage(package_id: string): APIPackage | Promise<APIPackage>;
 }
 
 export abstract class IMutation {
@@ -194,6 +210,10 @@ export abstract class IMutation {
     abstract addProductToPackage(package_id?: string, product_id?: string): JSON | Promise<JSON>;
 
     abstract deleteProductFormPackage(package_id?: string, product_id?: string): JSON | Promise<JSON>;
+
+    abstract createPackage(packageInput?: APIPackageInput): APIPackage | Promise<APIPackage>;
+
+    abstract deletePackage(package_id?: string): JSON | Promise<JSON>;
 }
 
 export type BigInt = unknown;

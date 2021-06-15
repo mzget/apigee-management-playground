@@ -8,11 +8,14 @@ type APIPackage {
   product: [Product]
 }
 
-type Product {
-  displayName: String
-  id: String
-  name: String
-  organization: Organization
-  status: String
-  transactionSuccessCriteria: String
+input APIPackageInput {
+  description: String!
+  displayName: String!
+  name: String!
+  product: [ProductInput]
+  status: String!
+}
+
+input ProductInput {
+  id: Int!
 }

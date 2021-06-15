@@ -1,4 +1,5 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { APIPackageInput } from 'src/graphql.schema';
 import { ApiPackagesService } from './api-packages.service';
 
 @Resolver('APIPackage')
@@ -8,7 +9,31 @@ export class ApiPackagesResolver {
   @Query()
   async apiPackages() {
     const items = await this.apiPackagesService.findAll();
+    console.log('apiPackages', items);
     return items.monetizationPackage;
+  }
+
+  @Query()
+  async apiPackage(@Args('package_id') package_id: string) {
+    const items = await this.apiPackagesService.findOne({ package_id });
+    console.log('apiPackage', items);
+    return items;
+  }
+
+  @Mutation()
+  async deletePackage(@Args('package_id') package_id: string) {
+    const response = await this.apiPackagesService.deleteOne({ package_id });
+    console.log('deletePackage', response);
+
+    return response;
+  }
+
+  @Mutation()
+  async createPackage(@Args('packageInput') packageInput: APIPackageInput) {
+    const response = await this.apiPackagesService.create(packageInput);
+    console.log('createPackage', response);
+
+    return response;
   }
 
   @Mutation()

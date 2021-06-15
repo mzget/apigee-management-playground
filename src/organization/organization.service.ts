@@ -8,6 +8,7 @@ export class OrganizationService implements BaseService<HttpClient> {
   constructor(public httpClient: HttpClient) {
     this.httpClient = new HttpClient();
   }
+  deleteOne: (T: any) => any;
   create: (T: any) => any;
   findAll() {
     return this.httpClient.get<Organization>({

@@ -8,8 +8,11 @@ type Query {
   organization: Organization
   companies: [Company]
   company(company_name: String): Company
+  companyAcceptedPackage(company_id: String, current: Boolean): [APIPackage]
+
   developers: [Developer]
   apiPackages: [APIPackage]
+  apiPackage(package_id: String!): APIPackage
 }
 
 type Mutation {
@@ -20,4 +23,6 @@ type Mutation {
   ): JSON
   addProductToPackage(package_id: String, product_id: String): JSON
   deleteProductFormPackage(package_id: String, product_id: String): JSON
+  createPackage(packageInput: APIPackageInput): APIPackage
+  deletePackage(package_id: String): JSON
 }
