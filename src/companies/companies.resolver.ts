@@ -29,4 +29,11 @@ export class CompaniesResolver {
     console.log('companyAcceptedPackage', items.monetizationPackage);
     return items.monetizationPackage;
   }
+
+  @Query()
+  async companyEligibleProduct(@Args('company_id') company_id: string) {
+    const item = await this.companiesService.companyEligibleProduct(company_id);
+    console.log('companyEligibleProduct', item);
+    return item.product;
+  }
 }

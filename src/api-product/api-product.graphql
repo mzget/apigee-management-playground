@@ -1,8 +1,10 @@
 type Product {
+  description: String
   displayName: String
   id: String
   name: String
   organization: Organization
   status: String
   transactionSuccessCriteria: String
+  refundSuccessCriteria: String
 }

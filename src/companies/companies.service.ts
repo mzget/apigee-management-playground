@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { HttpClient } from 'src/common/httpClient/HttpClient';
 import BaseService from 'src/common/interface/BaseService';
-import { APIPackage, Company } from 'src/graphql.schema';
+import { APIPackage, Company, Product } from 'src/graphql.schema';
 
 @Injectable()
 export class CompaniesService implements BaseService<HttpClient> {
@@ -26,6 +26,12 @@ export class CompaniesService implements BaseService<HttpClient> {
   async companyAcceptedPackage(company_id: string, current = false) {
     return await this.httpClient.get<{ monetizationPackage: APIPackage[] }>({
       path: `/mint/organizations/{org_name}/companies/${company_id}/monetization-packages?current=${current}`,
+    });
+  }
+
+  async companyEligibleProduct(company_id: string) {
+    return await this.httpClient.get<{ product: Product[] }>({
+      path: `/mint/organizations/{org_name}/companies/${company_id}/eligible-products`,
     });
   }
 }

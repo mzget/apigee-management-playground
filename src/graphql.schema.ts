@@ -30,12 +30,14 @@ export class APIPackage {
 }
 
 export class Product {
+    description?: string;
     displayName?: string;
     id?: string;
     name?: string;
     organization?: Organization;
     status?: string;
     transactionSuccessCriteria?: string;
+    refundSuccessCriteria?: string;
 }
 
 export class Company {
@@ -196,6 +198,8 @@ export abstract class IQuery {
     abstract company(company_name?: string): Company | Promise<Company>;
 
     abstract companyAcceptedPackage(company_id?: string, current?: boolean): APIPackage[] | Promise<APIPackage[]>;
+
+    abstract companyEligibleProduct(company_id?: string): Product[] | Promise<Product[]>;
 
     abstract developers(): Developer[] | Promise<Developer[]>;
 

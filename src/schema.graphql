@@ -9,6 +9,7 @@ type Query {
   companies: [Company]
   company(company_name: String): Company
   companyAcceptedPackage(company_id: String, current: Boolean): [APIPackage]
+  companyEligibleProduct(company_id: String): [Product]
 
   developers: [Developer]
   apiPackages: [APIPackage]
