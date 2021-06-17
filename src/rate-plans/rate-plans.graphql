@@ -52,6 +52,7 @@ type RatePlanRates {
   endUnit: Int
   id: String
   rate: Float
+  revshare: Float
   startUnit: Int
   type: String
 }
@@ -64,4 +65,68 @@ type Currency {
   organization: Organization
   status: String
   virtualCurrency: Boolean
+}
+
+input RatePlanInput {
+  description: String!
+  name: String!
+  type: AudienceType!
+  displayName: String!
+  isPrivate: Boolean!
+  published: Boolean!
+  currency: ObjectInput!
+  monetizationPackage: ObjectInput
+  organization: ObjectInput!
+  ratePlanDetails: [RatePlanDetailInput!]
+  startDate: String!
+  endDate: String
+}
+
+input ObjectInput {
+  id: String
+}
+
+input RatePlanDetailInput {
+  currency: ObjectInput!
+  ratePlanRates: [RatePlanRatesInput!]
+  type: RatePlanType!
+  meteringType: MeteringType!
+  ratingParameter: String! = "VOLUME"
+  ratingParameterUnit: String
+  duration: Int
+  durationType: DurationType
+}
+
+input RatePlanRatesInput {
+  endUnit: Int
+  id: String
+  rate: Float
+  revshare: Float
+  startUnit: Int
+  type: String
+}
+
+enum MeteringType {
+  UNIT
+  VOLUME
+  STAIR_STEP
+  DEV_SPECIFIC
+}
+enum RatePlanType {
+  REVSHARE
+  RATECARD
+  REVSHARE_RATECARD
+  USAGE_TARGET
+}
+enum AudienceType {
+  STANDARD
+  DEVELOPER_CATEGORY
+  DEVELOPER
+}
+enum DurationType {
+  DAY
+  WEEK
+  MONTH
+  QUARTER
+  YEAR
 }

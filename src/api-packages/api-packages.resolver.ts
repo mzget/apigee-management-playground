@@ -1,5 +1,5 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { APIPackageInput } from 'src/graphql.schema';
+import { APIPackageInput, RatePlan } from 'src/graphql.schema';
 import { ApiPackagesService } from './api-packages.service';
 
 @Resolver('APIPackage')
@@ -59,6 +59,32 @@ export class ApiPackagesResolver {
       product_id,
     });
     console.log('deleteProductFormPackage', items);
+    return items;
+  }
+
+  @Mutation()
+  async createRatePlan(
+    @Args('package_id') package_id: string,
+    @Args('params') params: RatePlan,
+  ) {
+    const items = await this.apiPackagesService.createRatePlan(
+      package_id,
+      params,
+    );
+    console.log('createRatePlan', items);
+    return items;
+  }
+
+  @Mutation()
+  async deleteDraftRatePlan(
+    @Args('package_id') package_id: string,
+    @Args('plan_id') plan_id: string,
+  ) {
+    const items = await this.apiPackagesService.deleteDraftRatePlan(
+      package_id,
+      plan_id,
+    );
+    console.log('deleteDraftRatePlan', items);
     return items;
   }
 }

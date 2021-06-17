@@ -7,6 +7,34 @@
 
 /* tslint:disable */
 /* eslint-disable */
+export enum MeteringType {
+    UNIT = "UNIT",
+    VOLUME = "VOLUME",
+    STAIR_STEP = "STAIR_STEP",
+    DEV_SPECIFIC = "DEV_SPECIFIC"
+}
+
+export enum RatePlanType {
+    REVSHARE = "REVSHARE",
+    RATECARD = "RATECARD",
+    REVSHARE_RATECARD = "REVSHARE_RATECARD",
+    USAGE_TARGET = "USAGE_TARGET"
+}
+
+export enum AudienceType {
+    STANDARD = "STANDARD",
+    DEVELOPER_CATEGORY = "DEVELOPER_CATEGORY",
+    DEVELOPER = "DEVELOPER"
+}
+
+export enum DurationType {
+    DAY = "DAY",
+    WEEK = "WEEK",
+    MONTH = "MONTH",
+    QUARTER = "QUARTER",
+    YEAR = "YEAR"
+}
+
 export class APIPackageInput {
     description: string;
     displayName: string;
@@ -17,6 +45,45 @@ export class APIPackageInput {
 
 export class ProductInput {
     id: number;
+}
+
+export class RatePlanInput {
+    description: string;
+    name: string;
+    type: AudienceType;
+    displayName: string;
+    isPrivate: boolean;
+    published: boolean;
+    currency: ObjectInput;
+    monetizationPackage?: ObjectInput;
+    organization: ObjectInput;
+    ratePlanDetails?: RatePlanDetailInput[];
+    startDate: string;
+    endDate?: string;
+}
+
+export class ObjectInput {
+    id?: string;
+}
+
+export class RatePlanDetailInput {
+    currency: ObjectInput;
+    ratePlanRates?: RatePlanRatesInput[];
+    type: RatePlanType;
+    meteringType: MeteringType;
+    ratingParameter: string;
+    ratingParameterUnit?: string;
+    duration?: number;
+    durationType?: DurationType;
+}
+
+export class RatePlanRatesInput {
+    endUnit?: number;
+    id?: string;
+    rate?: number;
+    revshare?: number;
+    startUnit?: number;
+    type?: string;
 }
 
 export class APIPackage {
@@ -170,6 +237,7 @@ export class RatePlanRates {
     endUnit?: number;
     id?: string;
     rate?: number;
+    revshare?: number;
     startUnit?: number;
     type?: string;
 }
@@ -218,6 +286,10 @@ export abstract class IMutation {
     abstract createPackage(packageInput?: APIPackageInput): APIPackage | Promise<APIPackage>;
 
     abstract deletePackage(package_id?: string): JSON | Promise<JSON>;
+
+    abstract createRatePlan(package_id?: string, params?: RatePlanInput): JSON | Promise<JSON>;
+
+    abstract deleteDraftRatePlan(package_id?: string, plan_id?: string): JSON | Promise<JSON>;
 }
 
 export type BigInt = unknown;

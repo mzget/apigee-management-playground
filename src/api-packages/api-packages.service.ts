@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { HttpClient } from 'src/common/httpClient/HttpClient';
 import BaseService from 'src/common/interface/BaseService';
-import { APIPackage, APIPackageInput } from 'src/graphql.schema';
+import { APIPackage, APIPackageInput, RatePlan } from 'src/graphql.schema';
 
 @Injectable()
 export class ApiPackagesService implements BaseService<HttpClient> {
@@ -49,6 +49,19 @@ export class ApiPackagesService implements BaseService<HttpClient> {
   deleteProductFormPackage({ package_id, product_id }) {
     return this.httpClient.delete<APIPackage>({
       path: `/mint/organizations/{org_name}/monetization-packages/${package_id}/products/${product_id}`,
+    });
+  }
+
+  createRatePlan(package_id: string, params: RatePlan) {
+    return this.httpClient.post<RatePlan>({
+      path: `/mint/organizations/{org_name}/monetization-packages/${package_id}/rate-plans`,
+      data: params,
+    });
+  }
+
+  deleteDraftRatePlan(package_id: string, plan_id: string) {
+    return this.httpClient.delete<any>({
+      path: `/mint/organizations/{org_name}/monetization-packages/${package_id}/rate-plans/${plan_id}`,
     });
   }
 }
