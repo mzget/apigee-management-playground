@@ -80,6 +80,13 @@ input RatePlanInput {
   ratePlanDetails: [RatePlanDetailInput!]
   startDate: String!
   endDate: String
+  earlyTerminationFee: Int
+  recurringFee: Int
+  setUpFee: Int
+  paymentDueDays: Int
+  prorate: Boolean
+  frequencyDuration: Int
+  frequencyDurationType: DurationType
 }
 
 input ObjectInput {

@@ -76,6 +76,21 @@ export class ApiPackagesResolver {
   }
 
   @Mutation()
+  async updateDraftRatePlan(
+    @Args('package_id') package_id: string,
+    @Args('plan_id') plan_id: string,
+    @Args('params') params: RatePlan,
+  ) {
+    const items = await this.apiPackagesService.updateDraftRatePlan(
+      package_id,
+      plan_id,
+      params,
+    );
+    console.log('updateDraftRatePlan', items);
+    return items;
+  }
+
+  @Mutation()
   async deleteDraftRatePlan(
     @Args('package_id') package_id: string,
     @Args('plan_id') plan_id: string,

@@ -60,6 +60,13 @@ export class RatePlanInput {
     ratePlanDetails?: RatePlanDetailInput[];
     startDate: string;
     endDate?: string;
+    earlyTerminationFee?: number;
+    recurringFee?: number;
+    setUpFee?: number;
+    paymentDueDays?: number;
+    prorate?: boolean;
+    frequencyDuration?: number;
+    frequencyDurationType?: DurationType;
 }
 
 export class ObjectInput {
@@ -288,6 +295,8 @@ export abstract class IMutation {
     abstract deletePackage(package_id?: string): JSON | Promise<JSON>;
 
     abstract createRatePlan(package_id?: string, params?: RatePlanInput): JSON | Promise<JSON>;
+
+    abstract updateDraftRatePlan(package_id?: string, plan_id?: string, params?: RatePlanInput): JSON | Promise<JSON>;
 
     abstract deleteDraftRatePlan(package_id?: string, plan_id?: string): JSON | Promise<JSON>;
 }

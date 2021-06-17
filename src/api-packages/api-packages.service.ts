@@ -59,6 +59,13 @@ export class ApiPackagesService implements BaseService<HttpClient> {
     });
   }
 
+  updateDraftRatePlan(package_id: string, plan_id: string, params: RatePlan) {
+    return this.httpClient.put<any>({
+      path: `/mint/organizations/{org_name}/monetization-packages/${package_id}/rate-plans/${plan_id}`,
+      data: params,
+    });
+  }
+
   deleteDraftRatePlan(package_id: string, plan_id: string) {
     return this.httpClient.delete<any>({
       path: `/mint/organizations/{org_name}/monetization-packages/${package_id}/rate-plans/${plan_id}`,

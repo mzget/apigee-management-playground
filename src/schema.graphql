@@ -28,5 +28,10 @@ type Mutation {
   deletePackage(package_id: String): JSON
 
   createRatePlan(package_id: String, params: RatePlanInput): JSON
+  updateDraftRatePlan(
+    package_id: String
+    plan_id: String
+    params: RatePlanInput
+  ): JSON
   deleteDraftRatePlan(package_id: String, plan_id: String): JSON
 }
