@@ -2,7 +2,9 @@ scalar BigInt
 scalar JSON
 
 type Query {
+  findOneRatePlan(package_id: String!, plan_id: String!): RatePlan
   ratePlans: [RatePlan]
+
   activeRatePlansForDev(developer_id: String): [RatePlan]
   developerAcceptedRatePlans(developer_id: String): JSON
   organization: Organization

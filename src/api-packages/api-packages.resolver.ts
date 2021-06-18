@@ -20,6 +20,19 @@ export class ApiPackagesResolver {
     return items;
   }
 
+  @Query()
+  async findOneRatePlan(
+    @Args('package_id') package_id: string,
+    @Args('plan_id') plan_id: string,
+  ) {
+    const items = await this.apiPackagesService.findOneRatePlan(
+      package_id,
+      plan_id,
+    );
+    console.log('findOneRatePlan', items);
+    return items;
+  }
+
   @Mutation()
   async deletePackage(@Args('package_id') package_id: string) {
     const response = await this.apiPackagesService.deleteOne({ package_id });

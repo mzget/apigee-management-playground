@@ -100,8 +100,13 @@ input RatePlanDetailInput {
   meteringType: MeteringType!
   ratingParameter: String! = "VOLUME"
   ratingParameterUnit: String
+  paymentDueDays: Int!
+  organization: ObjectInput!
   duration: Int
   durationType: DurationType
+  freemiumUnit: Int
+  freemiumDuration: Int
+  freemiumDurationType: DurationType
 }
 
 input RatePlanRatesInput {
@@ -109,8 +114,8 @@ input RatePlanRatesInput {
   id: String
   rate: Float
   revshare: Float
-  startUnit: Int
-  type: String
+  startUnit: Int!
+  type: String!
 }
 
 enum MeteringType {

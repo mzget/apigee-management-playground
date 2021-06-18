@@ -71,4 +71,11 @@ export class ApiPackagesService implements BaseService<HttpClient> {
       path: `/mint/organizations/{org_name}/monetization-packages/${package_id}/rate-plans/${plan_id}`,
     });
   }
+
+  findOneRatePlan(package_id: string, plan_id: string) {
+    return this.httpClient.get<RatePlan>({
+      path: `/mint/organizations/{org_name}/monetization-packages/${package_id}/rate-plans/${plan_id}
+    `,
+    });
+  }
 }

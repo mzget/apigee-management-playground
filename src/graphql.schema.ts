@@ -80,8 +80,13 @@ export class RatePlanDetailInput {
     meteringType: MeteringType;
     ratingParameter: string;
     ratingParameterUnit?: string;
+    paymentDueDays: number;
+    organization: ObjectInput;
     duration?: number;
     durationType?: DurationType;
+    freemiumUnit?: number;
+    freemiumDuration?: number;
+    freemiumDurationType?: DurationType;
 }
 
 export class RatePlanRatesInput {
@@ -89,8 +94,8 @@ export class RatePlanRatesInput {
     id?: string;
     rate?: number;
     revshare?: number;
-    startUnit?: number;
-    type?: string;
+    startUnit: number;
+    type: string;
 }
 
 export class APIPackage {
@@ -260,6 +265,8 @@ export class Currency {
 }
 
 export abstract class IQuery {
+    abstract findOneRatePlan(package_id: string, plan_id: string): RatePlan | Promise<RatePlan>;
+
     abstract ratePlans(): RatePlan[] | Promise<RatePlan[]>;
 
     abstract activeRatePlansForDev(developer_id?: string): RatePlan[] | Promise<RatePlan[]>;
